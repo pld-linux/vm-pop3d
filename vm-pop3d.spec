@@ -8,6 +8,7 @@ Group:		Networking/Daemons
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/mail/pop/%{name}-%{version}.tar.gz
 Source1:	%{name}.inetd
 Source2:	%{name}.init
+Patch0:		%{name}-ac.patch
 URL:		http://www.reedmedia.net/software/virtual-pop3d
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -112,6 +113,7 @@ To jest vm-pop3d w wersji inetd.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 %{__aclocal}
