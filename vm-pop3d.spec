@@ -33,7 +33,7 @@ nazwie.
 Summary:	POP3 daemon - common files
 Summary(pl):	Serwer POP3 - wspólne pliki
 Group:		Networking/Daemons
-%{?!_without_pam:Requires:	pam >= 0.67}
+%{?!_without_pam:Requires:	pam >= 0.77.3}
 Obsoletes:	pop3daemon
 Obsoletes:	pop3proxy
 Obsoletes:	qpopper
