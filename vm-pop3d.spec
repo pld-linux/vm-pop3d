@@ -10,7 +10,7 @@ Source0:	ftp://sunsite.unc.edu/pub/Linux/system/mail/pop/%{name}-%{version}.tar.
 Source1:	%{name}.inetd
 Source2:	%{name}.init
 Patch0:		%{name}-ac.patch
-URL:		http://www.reedmedia.net/software/virtual-pop3d
+URL:		http://www.reedmedia.net/software/virtualmail-pop3d/
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?!_without_pam:BuildRequires:	pam-devel}
