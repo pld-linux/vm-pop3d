@@ -20,7 +20,6 @@ directories; it can be used for setting up virtual email accounts
 -- mailboxes without real Unix owners for each. This will allow you 
 to have multiple email accounts with the same name on one system.
 
-
 %package common
 Summary:	POP3 daemon
 Summary(pl):	Serwer POP3
@@ -28,13 +27,19 @@ Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
 Group(pl):	Sieciowe/Serwery
 %{?!_without_pam:Requires:	pam >= 0.67}
+Obsoletes:	pop3daemon
+Obsoletes:	pop3proxy
+Obsoletes:	qpopper
+Obsoletes:	qpopper6
+Obsoletes:	imap-pop
+Obsoletes:	solid-pop3d-ssl
+Obsoletes:	solid-pop3d
 
 %description common
 virtualmail-pop3d supports alternative password files and mail spool
 directories; it can be used for setting up virtual email accounts
 -- mailboxes without real Unix owners for each. This will allow you 
 to have multiple email accounts with the same name on one system.
-
 
 %package standalone
 Summary:	POP3 daemon
@@ -46,13 +51,13 @@ PreReq:		%{name}-common = %{version}
 PreReq:		rc-scripts
 PreReq:		/sbin/chkconfig
 Provides:	%{name} = %{version}-%{release}
+Obsoletes:	vm-pop3d-inetd
 
 %description standalone
 virtualmail-pop3d supports alternative password files and mail spool
 directories; it can be used for setting up virtual email accounts
 -- mailboxes without real Unix owners for each. This will allow you 
 to have multiple email accounts with the same name on one system.
-
 
 %package inetd
 Summary:	POP3 daemon
@@ -63,6 +68,7 @@ Group(pl):	Sieciowe/Serwery
 PreReq:		%{name}-common = %{version}
 PreReq:		rc-inetd
 Provides:	%{name} = %{version}-%{release}
+Obsoletes:	vm-pop3d-standalone
 
 %description inetd
 virtualmail-pop3d supports alternative password files and mail spool
@@ -70,12 +76,13 @@ directories; it can be used for setting up virtual email accounts
 -- mailboxes without real Unix owners for each. This will allow you 
 to have multiple email accounts with the same name on one system.
 
-
 %prep
 %setup -q
 
 %build
-%configure2_13 \
+aclocal
+autoconf
+%configure \
 	%{?_without_pam:--disable-pam} \
 	%{?_without_virtual:--disable-virtual} \
 	%{?_with_ip_based_virtual:--enable-ip-based-virtual}
@@ -84,17 +91,16 @@ to have multiple email accounts with the same name on one system.
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig/rc-inetd} \
+	%{?!_without_pam:$RPM_BUILD_ROOT/etc/pam.d}
+
 %{__make} ROOT=$RPM_BUILD_ROOT install
 
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d
-%{?!_without_pam:install -d $RPM_BUILD_ROOT%{_sysconfdir}/pam.d}
-install -d $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/rc-inetd
+%{?!_without_pam:cp -f vm-pop3d.pamd $RPM_BUILD_ROOT/etc/pam.d/vm-pop3d}
+install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/rc-inetd/vm-pop3d
+install %{SOURCE2} $RPM_BUILD_ROOT/etc/rc.d/init.d/vm-pop3d
 
-%{?!_without_pam:cp -f vm-pop3d.pamd $RPM_BUILD_ROOT%{_sysconfdir}/pam.d/vm-pop3d}
-cp -f %{SOURCE1} $RPM_BUILD_ROOT%{_sysconfdir}/sysconfig/rc-inetd/vm-pop3d
-cp -f %{SOURCE2} $RPM_BUILD_ROOT%{_sysconfdir}/rc.d/init.d/vm-pop3d
-
-gzip -9nf AUTHORS CHANGES COPYING FAQ README TODO
+gzip -9nf AUTHORS CHANGES FAQ README TODO
 
 %clean
 rm -rf $RPM_BUILD_ROOT
