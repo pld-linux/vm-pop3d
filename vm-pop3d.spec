@@ -19,7 +19,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 virtualmail-pop3d supports alternative password files and mail spool
 directories; it can be used for setting up virtual email accounts
--- mailboxes without real Unix owners for each. This will allow you 
+-- mailboxes without real Unix owners for each. This will allow you
 to have multiple email accounts with the same name on one system.
 
 %description -l pl
@@ -45,7 +45,7 @@ Obsoletes:	solid-pop3d
 %description common
 virtualmail-pop3d supports alternative password files and mail spool
 directories; it can be used for setting up virtual email accounts
--- mailboxes without real Unix owners for each. This will allow you 
+-- mailboxes without real Unix owners for each. This will allow you
 to have multiple email accounts with the same name on one system.
 
 This is common package for standalone and inetd versions.
@@ -72,7 +72,7 @@ Obsoletes:	vm-pop3d-inetd
 %description standalone
 virtualmail-pop3d supports alternative password files and mail spool
 directories; it can be used for setting up virtual email accounts
--- mailboxes without real Unix owners for each. This will allow you 
+-- mailboxes without real Unix owners for each. This will allow you
 to have multiple email accounts with the same name on one system.
 
 This is standalone version of vm-pop3d.
@@ -98,7 +98,7 @@ Obsoletes:	vm-pop3d-standalone
 %description inetd
 virtualmail-pop3d supports alternative password files and mail spool
 directories; it can be used for setting up virtual email accounts
--- mailboxes without real Unix owners for each. This will allow you 
+-- mailboxes without real Unix owners for each. This will allow you
 to have multiple email accounts with the same name on one system.
 
 This is inetd version of vm-pop3d.
