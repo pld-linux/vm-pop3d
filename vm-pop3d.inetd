@@ -1,0 +1,9 @@
+SERVICE_NAME=vm-pop3d
+SOCK_TYPE=stream
+PROTOCOL=tcp
+PORT=110
+FLAGS=nowait
+USER=root
+SERVER=tcpd
+DAEMON=/usr/sbin/vm-pop3d
+DAEMONARGS="-i"
