@@ -2,7 +2,7 @@ Summary:	POP3 daemon
 Summary(pl):	Serwer POP3
 Name:		vm-pop3d
 Version:	1.1.5
-Release:	1
+Release:	2
 License:	GPL
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
@@ -20,9 +20,16 @@ directories; it can be used for setting up virtual email accounts
 -- mailboxes without real Unix owners for each. This will allow you 
 to have multiple email accounts with the same name on one system.
 
+%description -l pl
+virtualmail-pop3d obs³uguje alternatywne pliki z has³ami i katalogi
+pocztowe. Mo¿e byæ u¿ywany do ustawiania wirtualnych kont pocztowych -
+skrzynek bez prawdziwych uniksowych u¿ytkowników dla ka¿dej z nich.
+To pozwala mieæ w jednym systemie wiele kont pocztowych o tej samej
+nazwie.
+
 %package common
-Summary:	POP3 daemon
-Summary(pl):	Serwer POP3
+Summary:	POP3 daemon - common files
+Summary(pl):	Serwer POP3 - wspólne pliki
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
 Group(pl):	Sieciowe/Serwery
@@ -41,9 +48,20 @@ directories; it can be used for setting up virtual email accounts
 -- mailboxes without real Unix owners for each. This will allow you 
 to have multiple email accounts with the same name on one system.
 
+This is common package for standalone and inetd versions.
+
+%description common -l pl
+virtualmail-pop3d obs³uguje alternatywne pliki z has³ami i katalogi
+pocztowe. Mo¿e byæ u¿ywany do ustawiania wirtualnych kont pocztowych -
+skrzynek bez prawdziwych uniksowych u¿ytkowników dla ka¿dej z nich.
+To pozwala mieæ w jednym systemie wiele kont pocztowych o tej samej
+nazwie.
+
+To jest wspólny pakiet dla wersji samodzielnej i inetd.
+
 %package standalone
-Summary:	POP3 daemon
-Summary(pl):	Serwer POP3
+Summary:	POP3 daemon - standalone version
+Summary(pl):	Serwer POP3 - wersja samodzielna
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
 Group(pl):	Sieciowe/Serwery
@@ -59,9 +77,20 @@ directories; it can be used for setting up virtual email accounts
 -- mailboxes without real Unix owners for each. This will allow you 
 to have multiple email accounts with the same name on one system.
 
+This is standalone version of vm-pop3d.
+
+%description standalone -l pl
+virtualmail-pop3d obs³uguje alternatywne pliki z has³ami i katalogi
+pocztowe. Mo¿e byæ u¿ywany do ustawiania wirtualnych kont pocztowych -
+skrzynek bez prawdziwych uniksowych u¿ytkowników dla ka¿dej z nich.
+To pozwala mieæ w jednym systemie wiele kont pocztowych o tej samej
+nazwie.
+
+To jest samodzielna wersja vm-pop3d.
+
 %package inetd
-Summary:	POP3 daemon
-Summary(pl):	Serwer POP3
+Summary:	POP3 daemon - inetd version
+Summary(pl):	Serwer POP3 - wersja inetd
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
 Group(pl):	Sieciowe/Serwery
@@ -75,6 +104,17 @@ virtualmail-pop3d supports alternative password files and mail spool
 directories; it can be used for setting up virtual email accounts
 -- mailboxes without real Unix owners for each. This will allow you 
 to have multiple email accounts with the same name on one system.
+
+This is inetd version of vm-pop3d.
+
+%description inetd -l pl
+virtualmail-pop3d obs³uguje alternatywne pliki z has³ami i katalogi
+pocztowe. Mo¿e byæ u¿ywany do ustawiania wirtualnych kont pocztowych -
+skrzynek bez prawdziwych uniksowych u¿ytkowników dla ka¿dej z nich.
+To pozwala mieæ w jednym systemie wiele kont pocztowych o tej samej
+nazwie.
+
+To jest vm-pop3d w wersji inetd.
 
 %prep
 %setup -q
@@ -130,7 +170,6 @@ if [ "$1" = "0" -a -f /var/lock/subsys/vm-pop3d ]; then
 	/etc/rc.d/init.d/vm-pop3d stop 1>&2
 fi
 /sbin/chkconfig --del vm-pop3d
-
 
 %files common
 %defattr(644,root,root,755)
