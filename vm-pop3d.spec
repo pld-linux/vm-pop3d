@@ -65,7 +65,7 @@ Summary(pl):	Serwer POP3 - wersja samodzielna
 Group:		Networking/Daemons
 PreReq:		%{name}-common = %{version}
 PreReq:		rc-scripts
-PreReq:		/sbin/chkconfig
+Requires(post,preun):	/sbin/chkconfig
 Provides:	%{name} = %{version}-%{release}
 Obsoletes:	vm-pop3d-inetd
 
@@ -131,7 +131,8 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig/rc-inetd} \
 	%{?!_without_pam:$RPM_BUILD_ROOT/etc/pam.d}
 
-%{__make} ROOT=$RPM_BUILD_ROOT install
+%{__make} install \
+	ROOT=$RPM_BUILD_ROOT
 
 %{?!_without_pam:cp -f vm-pop3d.pamd $RPM_BUILD_ROOT/etc/pam.d/vm-pop3d}
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/rc-inetd/vm-pop3d
