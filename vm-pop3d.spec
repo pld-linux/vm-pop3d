@@ -1,8 +1,8 @@
 Summary:	POP3 daemon
 Summary(pl):	Serwer POP3
 Name:		vm-pop3d
-Version:	1.1.5
-Release:	2
+Version:	1.1.6
+Release:	1
 License:	GPL
 Group:		Networking/Daemons
 Group(de):	Netzwerkwesen/Server
