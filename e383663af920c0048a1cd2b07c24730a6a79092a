@@ -1,0 +1,6 @@
+- added all other now available packages names with pop daemons to Obsoletes,
+- removed COPYING from %%doc (license is well known: GPL),
+- added vm-pop3d-inetd to Obsoletes for vm-pop3d-standalone and vice versa,
+- cosmetics.
+NOTE: it will require ASAP add vm-pop3d-inetd, vm-pop3d-standalone to Obsoletes
+for all available packages with pop daemons.
