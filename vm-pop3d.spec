@@ -5,8 +5,6 @@ Version:	1.1.6
 Release:	1
 License:	GPL
 Group:		Networking/Daemons
-Group(de):	Netzwerkwesen/Server
-Group(pl):	Sieciowe/Serwery
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/mail/pop/%{name}-%{version}.tar.gz
 Source1:	%{name}.inetd
 Source2:	%{name}.init
@@ -31,8 +29,6 @@ nazwie.
 Summary:	POP3 daemon - common files
 Summary(pl):	Serwer POP3 - wspólne pliki
 Group:		Networking/Daemons
-Group(de):	Netzwerkwesen/Server
-Group(pl):	Sieciowe/Serwery
 %{?!_without_pam:Requires:	pam >= 0.67}
 Obsoletes:	pop3daemon
 Obsoletes:	pop3proxy
@@ -63,8 +59,6 @@ To jest wspólny pakiet dla wersji samodzielnej i inetd.
 Summary:	POP3 daemon - standalone version
 Summary(pl):	Serwer POP3 - wersja samodzielna
 Group:		Networking/Daemons
-Group(de):	Netzwerkwesen/Server
-Group(pl):	Sieciowe/Serwery
 PreReq:		%{name}-common = %{version}
 PreReq:		rc-scripts
 PreReq:		/sbin/chkconfig
@@ -92,8 +86,6 @@ To jest samodzielna wersja vm-pop3d.
 Summary:	POP3 daemon - inetd version
 Summary(pl):	Serwer POP3 - wersja inetd
 Group:		Networking/Daemons
-Group(de):	Netzwerkwesen/Server
-Group(pl):	Sieciowe/Serwery
 PreReq:		%{name}-common = %{version}
 PreReq:		rc-inetd
 Provides:	%{name} = %{version}-%{release}
