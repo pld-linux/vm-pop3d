@@ -113,7 +113,7 @@ To jest vm-pop3d w wersji inetd.
 
 %build
 aclocal
-autoconf
+%{__autoconf}
 %configure \
 	%{?_without_pam:--disable-pam} \
 	%{?_without_virtual:--disable-virtual} \
