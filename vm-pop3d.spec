@@ -112,7 +112,7 @@ To jest vm-pop3d w wersji inetd.
 %setup -q
 
 %build
-aclocal
+%{__aclocal}
 %{__autoconf}
 %configure \
 	%{?_without_pam:--disable-pam} \
@@ -131,8 +131,6 @@ install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig/rc-inetd} \
 %{?!_without_pam:cp -f vm-pop3d.pamd $RPM_BUILD_ROOT/etc/pam.d/vm-pop3d}
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/rc-inetd/vm-pop3d
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/rc.d/init.d/vm-pop3d
-
-gzip -9nf AUTHORS CHANGES FAQ README TODO
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -165,7 +163,7 @@ fi
 
 %files common
 %defattr(644,root,root,755)
-%doc *.gz
+%doc AUTHORS CHANGES FAQ README TODO
 %{?!_without_pam:%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/pam.d/vm-pop3d}
 %attr(0755,root,root) %{_sbindir}/vm-pop3d
 %{_mandir}/man8/*
