@@ -13,35 +13,41 @@
 . /etc/sysconfig/network
 
 # Check that networking is up.
-if is_no "${NETWORKING}"; then
-        # nls "ERROR: Networking is down. %s can't be run." <service>
-        msg_Network_Down vm-pop3d
-        exit 1
+if is_yes "${NETWORKING}"; then
+	if [ ! -f /var/lock/subsys/network ]; then
+		# nls "ERROR: Networking is down. %s can't be run." <service>
+		msg_network_down vm-pop3d
+		exit 1
+	fi
+else
+	exit 0
 fi
+
 
 # See how we were called.
 case "$1" in
   start)
 	# Check if the service is already running?
-        if [ ! -f /var/lock/subsys/vm-pop3d ]; then
+	if [ ! -f /var/lock/subsys/vm-pop3d ]; then
 		msg_starting vm-pop3d
 		daemon vm-pop3d -d 10 -t 600
-	        RETVAL=$?
-    		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/vm-pop3d
+		RETVAL=$?
+		[ $RETVAL -eq 0 ] && touch /var/lock/subsys/vm-pop3d
 	else
-        	msg_Already_Running vm-pop3d
-	        exit 1
+		msg_already_running vm-pop3d
+		exit 1
 	fi
 	;;
   stop)
-        # Stop daemons.
 	if [ -f /var/lock/subsys/vm-pop3d ]; then
-                msg_stopping vm-pop3d
-                killproc vm-pop3d
-                rm -f /var/lock/subsys/vm-pop3d
-        else
-		msg_Not_Running vm-pop3d
-	        exit 1
+		# Stop daemons.
+		msg_stopping vm-pop3d
+		killproc vm-pop3d
+		RETVAL=$?
+		rm -f /var/lock/subsys/vm-pop3d
+	else
+		msg_not_running vm-pop3d
+		exit 1
 	fi
 	;;
   status)
@@ -51,9 +57,14 @@ case "$1" in
   restart|reload)
 	$0 stop
 	$0 start
+	exit $?
+	;;
+  force-reload)
+	$0 stop && $0 start
+	exit $?
 	;;
   *)
-	msg_Usage "$0 {start|stop|restart|status}"
+	msg_usage "$0 {start|stop|restart|reload|force-reload|status}"
 	exit 1
 	;;
 esac
