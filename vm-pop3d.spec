@@ -1,5 +1,5 @@
 # Conditional build:
-%bcond_without  pam		 # build without pam support
+%bcond_without	pam		 # build without pam support
 %bcond_without	virtual		 # build without virtual users support
 %bcond_with	ip_based_virtual # enable IP-based virtual passwd files and spool directories
 %bcond_with	debug		 # enable debugging messages and logging
