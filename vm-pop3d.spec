@@ -2,7 +2,7 @@ Summary:	POP3 daemon
 Summary(pl):	Serwer POP3
 Name:		vm-pop3d
 Version:	1.1.6
-Release:	2
+Release:	3
 License:	GPL
 Group:		Networking/Daemons
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/mail/pop/%{name}-%{version}.tar.gz
