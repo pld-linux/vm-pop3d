@@ -1,3 +1,9 @@
+# Conditional build:
+%bcond_without  pam		 # build without pam support
+%bcond_without	virtual		 # build without virtual users support
+%bcond_with	ip_based_virtual # enable IP-based virtual passwd files and spool directories
+%bcond_with	debug		 # enable debugging messages and logging
+#
 Summary:	POP3 daemon
 Summary(pl):	Serwer POP3
 Name:		vm-pop3d
@@ -13,7 +19,7 @@ Patch0:		%{name}-ac.patch
 URL:		http://www.reedmedia.net/software/virtualmail-pop3d/
 BuildRequires:	autoconf
 BuildRequires:	automake
-%{?!_without_pam:BuildRequires:	pam-devel}
+%{?with_pam:BuildRequires:	pam-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -33,7 +39,7 @@ nazwie.
 Summary:	POP3 daemon - common files
 Summary(pl):	Serwer POP3 - wspólne pliki
 Group:		Networking/Daemons
-%{?!_without_pam:Requires:	pam >= 0.77.3}
+%{?with_pam:Requires:	pam >= 0.77.3}
 Obsoletes:	pop3daemon
 Obsoletes:	pop3proxy
 Obsoletes:	qpopper
@@ -120,21 +126,22 @@ To jest vm-pop3d w wersji inetd.
 %{__aclocal}
 %{__autoconf}
 %configure \
-	%{?_without_pam:--disable-pam} \
-	%{?_without_virtual:--disable-virtual} \
-	%{?_with_ip_based_virtual:--enable-ip-based-virtual}
+	%{!?with_pam:--disable-pam} \
+	%{!?with_virtual:--disable-virtual} \
+	%{?with_ip_based_virtual:--enable-ip-based-virtual} \
+	%{?with_debug:--enable-debug}
 
 %{__make}
 
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT/etc/{rc.d/init.d,sysconfig/rc-inetd} \
-	%{?!_without_pam:$RPM_BUILD_ROOT/etc/pam.d}
+	%{?with_pam:$RPM_BUILD_ROOT/etc/pam.d}
 
 %{__make} install \
 	ROOT=$RPM_BUILD_ROOT
 
-%{?!_without_pam:cp -f vm-pop3d.pamd $RPM_BUILD_ROOT/etc/pam.d/vm-pop3d}
+%{?with_pam:cp -f vm-pop3d.pamd $RPM_BUILD_ROOT/etc/pam.d/vm-pop3d}
 install %{SOURCE1} $RPM_BUILD_ROOT/etc/sysconfig/rc-inetd/vm-pop3d
 install %{SOURCE2} $RPM_BUILD_ROOT/etc/rc.d/init.d/vm-pop3d
 
@@ -170,7 +177,7 @@ fi
 %files common
 %defattr(644,root,root,755)
 %doc AUTHORS CHANGES FAQ README TODO
-%{?!_without_pam:%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/pam.d/vm-pop3d}
+%{?with_pam:%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/pam.d/vm-pop3d}
 %attr(0755,root,root) %{_sbindir}/vm-pop3d
 %{_mandir}/man8/*
 
