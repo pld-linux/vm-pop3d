@@ -6,6 +6,7 @@ Release:	2
 License:	GPL
 Group:		Networking/Daemons
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/mail/pop/%{name}-%{version}.tar.gz
+# Source0-md5:	0399cc06f5329a6eaebec05d959a6ec1
 Source1:	%{name}.inetd
 Source2:	%{name}.init
 Patch0:		%{name}-ac.patch
