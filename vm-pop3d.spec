@@ -69,9 +69,9 @@ To jest wspólny pakiet dla wersji samodzielnej i inetd.
 Summary:	POP3 daemon - standalone version
 Summary(pl):	Serwer POP3 - wersja samodzielna
 Group:		Networking/Daemons
-PreReq:		%{name}-common = %{version}
-PreReq:		rc-scripts
 Requires(post,preun):	/sbin/chkconfig
+Requires:	%{name}-common = %{version}
+Requires:	rc-scripts
 Provides:	%{name} = %{version}-%{release}
 Obsoletes:	vm-pop3d-inetd
 
@@ -96,8 +96,8 @@ To jest samodzielna wersja vm-pop3d.
 Summary:	POP3 daemon - inetd version
 Summary(pl):	Serwer POP3 - wersja inetd
 Group:		Networking/Daemons
-PreReq:		%{name}-common = %{version}
-PreReq:		rc-inetd
+Requires:	%{name}-common = %{version}
+Requires:	rc-inetd
 Provides:	%{name} = %{version}-%{release}
 Obsoletes:	vm-pop3d-standalone
 
@@ -177,13 +177,13 @@ fi
 %files common
 %defattr(644,root,root,755)
 %doc AUTHORS CHANGES FAQ README TODO
-%{?with_pam:%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/pam.d/vm-pop3d}
-%attr(0755,root,root) %{_sbindir}/vm-pop3d
+%{?with_pam:%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/pam.d/vm-pop3d}
+%attr(755,root,root) %{_sbindir}/vm-pop3d
 %{_mandir}/man8/*
 
 %files inetd
 %defattr(644,root,root,755)
-%attr(640,root,root) %config(noreplace) %verify(not size mtime md5) /etc/sysconfig/rc-inetd/vm-pop3d
+%attr(640,root,root) %config(noreplace) %verify(not md5 mtime size) /etc/sysconfig/rc-inetd/vm-pop3d
 
 %files standalone
 %defattr(644,root,root,755)
