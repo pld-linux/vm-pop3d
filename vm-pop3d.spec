@@ -150,11 +150,11 @@ install %{SOURCE2} $RPM_BUILD_ROOT/etc/rc.d/init.d/vm-pop3d
 rm -rf $RPM_BUILD_ROOT
 
 %post inetd
-%service -q rc-inetd restart
+%service -q rc-inetd reload
 
 %postun inetd
 if [ "$1" = "0" ]; then
-	%service -q rc-inetd restart
+	%service -q rc-inetd reload
 fi
 
 %post standalone
