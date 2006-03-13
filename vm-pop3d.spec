@@ -8,7 +8,7 @@ Summary:	POP3 daemon
 Summary(pl):	Serwer POP3
 Name:		vm-pop3d
 Version:	1.1.6
-Release:	3
+Release:	4
 License:	GPL
 Group:		Networking/Daemons
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/mail/pop/%{name}-%{version}.tar.gz
@@ -20,6 +20,7 @@ URL:		http://www.reedmedia.net/software/virtualmail-pop3d/
 BuildRequires:	autoconf
 BuildRequires:	automake
 %{?with_pam:BuildRequires:	pam-devel}
+BuildRequires:	rpmbuild(macros) >= 1.268
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -40,13 +41,13 @@ Summary:	POP3 daemon - common files
 Summary(pl):	Serwer POP3 - wspólne pliki
 Group:		Networking/Daemons
 %{?with_pam:Requires:	pam >= 0.77.3}
+Obsoletes:	imap-pop
 Obsoletes:	pop3daemon
 Obsoletes:	pop3proxy
 Obsoletes:	qpopper
 Obsoletes:	qpopper6
-Obsoletes:	imap-pop
-Obsoletes:	solid-pop3d-ssl
 Obsoletes:	solid-pop3d
+Obsoletes:	solid-pop3d-ssl
 
 %description common
 virtualmail-pop3d supports alternative password files and mail spool
@@ -149,30 +150,22 @@ install %{SOURCE2} $RPM_BUILD_ROOT/etc/rc.d/init.d/vm-pop3d
 rm -rf $RPM_BUILD_ROOT
 
 %post inetd
-if [ -f /var/lock/subsys/rc-inetd ]; then
-	/etc/rc.d/init.d/rc-inetd restart 1>&2
-else
-	echo "Type \"/etc/rc.d/init.d/rc-inetd start\" to start inet server" 1>&2
-fi
+%service -q rc-inetd restart
 
 %postun inetd
-if [ "$1" = "0" -a -f /var/lock/subsys/rc-inetd ]; then
-	/etc/rc.d/init.d/rc-inetd reload 1>&2
+if [ "$1" = "0" ]; then
+	%service -q rc-inetd restart
 fi
 
 %post standalone
 /sbin/chkconfig --add vm-pop3d
-if [ -f /var/lock/subsys/vm-pop3d ]; then
-	/etc/rc.d/init.d/vm-pop3d restart 1>&2
-else
-	echo "Run \"/etc/rc.d/init.d/vm-pop3d start\" to start vm-pop3d daemon."
-fi
+%service vm-pop3d restart "vm-pop3d daemon"
 
 %preun standalone
-if [ "$1" = "0" -a -f /var/lock/subsys/vm-pop3d ]; then
-	/etc/rc.d/init.d/vm-pop3d stop 1>&2
+if [ "$1" = "0" ]; then
+	%service vm-pop3d stop
+	/sbin/chkconfig --del vm-pop3d
 fi
-/sbin/chkconfig --del vm-pop3d
 
 %files common
 %defattr(644,root,root,755)
