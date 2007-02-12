@@ -5,7 +5,7 @@
 %bcond_with	debug		 # enable debugging messages and logging
 #
 Summary:	POP3 daemon
-Summary(pl):	Serwer POP3
+Summary(pl.UTF-8):   Serwer POP3
 Name:		vm-pop3d
 Version:	1.1.6
 Release:	4
@@ -29,16 +29,16 @@ directories; it can be used for setting up virtual email accounts
 -- mailboxes without real Unix owners for each. This will allow you
 to have multiple email accounts with the same name on one system.
 
-%description -l pl
-virtualmail-pop3d obs≥uguje alternatywne pliki z has≥ami i katalogi
-pocztowe. Moøe byÊ uøywany do ustawiania wirtualnych kont pocztowych -
-skrzynek bez prawdziwych uniksowych uøytkownikÛw dla kaødej z nich.
-To pozwala mieÊ w jednym systemie wiele kont pocztowych o tej samej
+%description -l pl.UTF-8
+virtualmail-pop3d obs≈Çuguje alternatywne pliki z has≈Çami i katalogi
+pocztowe. Mo≈ºe byƒá u≈ºywany do ustawiania wirtualnych kont pocztowych -
+skrzynek bez prawdziwych uniksowych u≈ºytkownik√≥w dla ka≈ºdej z nich.
+To pozwala mieƒá w jednym systemie wiele kont pocztowych o tej samej
 nazwie.
 
 %package common
 Summary:	POP3 daemon - common files
-Summary(pl):	Serwer POP3 - wspÛlne pliki
+Summary(pl.UTF-8):   Serwer POP3 - wsp√≥lne pliki
 Group:		Networking/Daemons
 %{?with_pam:Requires:	pam >= 0.77.3}
 Obsoletes:	imap-pop
@@ -57,18 +57,18 @@ to have multiple email accounts with the same name on one system.
 
 This is common package for standalone and inetd versions.
 
-%description common -l pl
-virtualmail-pop3d obs≥uguje alternatywne pliki z has≥ami i katalogi
-pocztowe. Moøe byÊ uøywany do ustawiania wirtualnych kont pocztowych -
-skrzynek bez prawdziwych uniksowych uøytkownikÛw dla kaødej z nich.
-To pozwala mieÊ w jednym systemie wiele kont pocztowych o tej samej
+%description common -l pl.UTF-8
+virtualmail-pop3d obs≈Çuguje alternatywne pliki z has≈Çami i katalogi
+pocztowe. Mo≈ºe byƒá u≈ºywany do ustawiania wirtualnych kont pocztowych -
+skrzynek bez prawdziwych uniksowych u≈ºytkownik√≥w dla ka≈ºdej z nich.
+To pozwala mieƒá w jednym systemie wiele kont pocztowych o tej samej
 nazwie.
 
-To jest wspÛlny pakiet dla wersji samodzielnej i inetd.
+To jest wsp√≥lny pakiet dla wersji samodzielnej i inetd.
 
 %package standalone
 Summary:	POP3 daemon - standalone version
-Summary(pl):	Serwer POP3 - wersja samodzielna
+Summary(pl.UTF-8):   Serwer POP3 - wersja samodzielna
 Group:		Networking/Daemons
 Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name}-common = %{version}
@@ -84,18 +84,18 @@ to have multiple email accounts with the same name on one system.
 
 This is standalone version of vm-pop3d.
 
-%description standalone -l pl
-virtualmail-pop3d obs≥uguje alternatywne pliki z has≥ami i katalogi
-pocztowe. Moøe byÊ uøywany do ustawiania wirtualnych kont pocztowych -
-skrzynek bez prawdziwych uniksowych uøytkownikÛw dla kaødej z nich.
-To pozwala mieÊ w jednym systemie wiele kont pocztowych o tej samej
+%description standalone -l pl.UTF-8
+virtualmail-pop3d obs≈Çuguje alternatywne pliki z has≈Çami i katalogi
+pocztowe. Mo≈ºe byƒá u≈ºywany do ustawiania wirtualnych kont pocztowych -
+skrzynek bez prawdziwych uniksowych u≈ºytkownik√≥w dla ka≈ºdej z nich.
+To pozwala mieƒá w jednym systemie wiele kont pocztowych o tej samej
 nazwie.
 
 To jest samodzielna wersja vm-pop3d.
 
 %package inetd
 Summary:	POP3 daemon - inetd version
-Summary(pl):	Serwer POP3 - wersja inetd
+Summary(pl.UTF-8):   Serwer POP3 - wersja inetd
 Group:		Networking/Daemons
 Requires:	%{name}-common = %{version}
 Requires:	rc-inetd
@@ -110,11 +110,11 @@ to have multiple email accounts with the same name on one system.
 
 This is inetd version of vm-pop3d.
 
-%description inetd -l pl
-virtualmail-pop3d obs≥uguje alternatywne pliki z has≥ami i katalogi
-pocztowe. Moøe byÊ uøywany do ustawiania wirtualnych kont pocztowych -
-skrzynek bez prawdziwych uniksowych uøytkownikÛw dla kaødej z nich.
-To pozwala mieÊ w jednym systemie wiele kont pocztowych o tej samej
+%description inetd -l pl.UTF-8
+virtualmail-pop3d obs≈Çuguje alternatywne pliki z has≈Çami i katalogi
+pocztowe. Mo≈ºe byƒá u≈ºywany do ustawiania wirtualnych kont pocztowych -
+skrzynek bez prawdziwych uniksowych u≈ºytkownik√≥w dla ka≈ºdej z nich.
+To pozwala mieƒá w jednym systemie wiele kont pocztowych o tej samej
 nazwie.
 
 To jest vm-pop3d w wersji inetd.
