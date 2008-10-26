@@ -74,6 +74,7 @@ Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name}-common = %{version}
 Requires:	rc-scripts
 Provides:	%{name} = %{version}-%{release}
+Provides:	pop3daemon
 Obsoletes:	vm-pop3d-inetd
 
 %description standalone
@@ -100,6 +101,7 @@ Group:		Networking/Daemons/POP3
 Requires:	%{name}-common = %{version}
 Requires:	rc-inetd
 Provides:	%{name} = %{version}-%{release}
+Provides:	pop3daemon
 Obsoletes:	vm-pop3d-standalone
 
 %description inetd
