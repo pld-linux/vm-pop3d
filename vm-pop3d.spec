@@ -10,7 +10,7 @@ Name:		vm-pop3d
 Version:	1.1.6
 Release:	4
 License:	GPL
-Group:		Networking/Daemons
+Group:		Networking/Daemons/POP3
 Source0:	ftp://sunsite.unc.edu/pub/Linux/system/mail/pop/%{name}-%{version}.tar.gz
 # Source0-md5:	0399cc06f5329a6eaebec05d959a6ec1
 Source1:	%{name}.inetd
@@ -39,7 +39,7 @@ nazwie.
 %package common
 Summary:	POP3 daemon - common files
 Summary(pl.UTF-8):	Serwer POP3 - wspólne pliki
-Group:		Networking/Daemons
+Group:		Networking/Daemons/POP3
 %{?with_pam:Requires:	pam >= 0.77.3}
 Obsoletes:	imap-pop
 Obsoletes:	pop3daemon
@@ -69,7 +69,7 @@ To jest wspólny pakiet dla wersji samodzielnej i inetd.
 %package standalone
 Summary:	POP3 daemon - standalone version
 Summary(pl.UTF-8):	Serwer POP3 - wersja samodzielna
-Group:		Networking/Daemons
+Group:		Networking/Daemons/POP3
 Requires(post,preun):	/sbin/chkconfig
 Requires:	%{name}-common = %{version}
 Requires:	rc-scripts
@@ -96,7 +96,7 @@ To jest samodzielna wersja vm-pop3d.
 %package inetd
 Summary:	POP3 daemon - inetd version
 Summary(pl.UTF-8):	Serwer POP3 - wersja inetd
-Group:		Networking/Daemons
+Group:		Networking/Daemons/POP3
 Requires:	%{name}-common = %{version}
 Requires:	rc-inetd
 Provides:	%{name} = %{version}-%{release}
