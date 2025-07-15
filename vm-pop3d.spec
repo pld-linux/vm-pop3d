@@ -123,7 +123,7 @@ To jest vm-pop3d w wersji inetd.
 
 %prep
 %setup -q
-%patch0 -p1
+%patch -P0 -p1
 
 %build
 %{__aclocal}
